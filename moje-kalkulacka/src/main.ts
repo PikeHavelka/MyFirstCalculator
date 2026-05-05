@@ -1,5 +1,4 @@
-import './style.css'
-
+import "./style.css";
 
 // ošetření psaní čárky jako počáteční znak
 // if (currentValue.slice(0, 1) === "0") => opravit, chyba při psaní
@@ -15,11 +14,12 @@ let operator = "";
 let result = 0;
 
 document.addEventListener("click", (event) => {
-  const target = event.target
-  const dataType = target.dataset.type;
-  const dataValue = target.dataset.value;
+  if (!(event.target instanceof HTMLButtonElement)) return;
 
-  if (target.tagName !== "BUTTON") return;
+  const target = event.target;
+  const { type: dataType, value: dataValue } = target.dataset;
+
+  if (!dataType || !dataValue) return;
 
   switch (dataType) {
     case "number":
